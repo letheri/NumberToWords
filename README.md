@@ -3,6 +3,8 @@ Bu fonksiyonu kullanarak integer formatındaki sayıları Türkçe kelimelere d�
 Üst limit olarak 999 Katrilyona kadar desteklemektedir.
 Gerekirse fonksiyon içindeki array düzenlenerek daha büyük sayı desteği eklenebilir.
 
+Sadece pozitif sayılarla çalışmaktadır.
+
 ```sql
 CREATE OR REPLACE FUNCTION public.number_to_words_turkish(num integer) RETURNS TEXT LANGUAGE plpgsql AS $function$
 DECLARE
