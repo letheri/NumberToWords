@@ -54,3 +54,24 @@ BEGIN
 END;
 $function$ ;
 
+
+CREATE OR REPLACE FUNCTION public.money_to_words(money numeric)
+ RETURNS text
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    result TEXT := '';
+    money_int int := trunc(round(money,2));
+    money_decimal int := (round(money,2)*100)%100;
+BEGIN
+    IF money = 0 OR money IS NULL THEN
+        RETURN 'sıfır';
+    END IF;
+    RESULT := trim(number_to_words_turkish(money_int)) || ' türk lirası';
+	IF money_decimal != 0 AND money_decimal IS NOT NULL THEN
+        RESULT := result || ', '|| trim(number_to_words_turkish(money_decimal)) || ' kr.' ;
+    END IF;
+
+    RETURN result;
+END;
+$function$;

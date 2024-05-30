@@ -1,9 +1,11 @@
 # PostgreSQL Türkçe Sayıları Kelimelere Dönüştür
-Bu fonksiyonu kullanarak integer formatındaki sayıları Türkçe kelimelere dönüştürebilirsiniz.
+Bu fonksiyonu kullanarak sayıları Türkçe kelimelere dönüştürebilirsiniz.
 Üst limit olarak 999 Katrilyona kadar desteklemektedir.
 Gerekirse fonksiyon içindeki array düzenlenerek daha büyük sayı desteği eklenebilir.
 
 Sadece pozitif sayılarla çalışmaktadır.
+
+Fonksiyonun paralar ile de çalışabilmesi için ikinci bir fonksiyon eklenmiştir.
 
 ```sql
 CREATE OR REPLACE FUNCTION public.number_to_words_turkish(num integer) RETURNS TEXT LANGUAGE plpgsql AS $function$
@@ -63,4 +65,5 @@ $function$ ;
 ## Kullanımı
 ```
 SELECT number_to_words_turkish(132456); -- > yüz otuz iki bin dört yüz elli altı 
+SELECT money_to_words(123.599); -- > yüz yirmi üç türk lirası, altmış kr.
 ```
