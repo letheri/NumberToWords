@@ -1,4 +1,7 @@
-CREATE OR REPLACE FUNCTION public.number_to_words_turkish(num integer) RETURNS TEXT LANGUAGE plpgsql AS $function$
+CREATE OR REPLACE FUNCTION public.number_to_words_turkish(num integer)
+ RETURNS text
+ LANGUAGE plpgsql
+AS $function$
 DECLARE
     digits CONSTANT TEXT[] := ARRAY['bir', 'iki', 'üç', 'dört', 'beş', 'altı', 'yedi', 'sekiz', 'dokuz'];
     tens CONSTANT TEXT[] := ARRAY['on', 'yirmi', 'otuz', 'kırk', 'elli', 'altmış', 'yetmiş', 'seksen', 'doksan'];
@@ -12,7 +15,7 @@ DECLARE
    	onluk VARCHAR(1) := '';
   	yuzluk VARCHAR(1) := '';
 BEGIN
-    IF num = 0 THEN
+    IF num = 0 or num is null THEN
         RETURN 'sıfır';
     END IF;
    	IF num < 0 THEN
