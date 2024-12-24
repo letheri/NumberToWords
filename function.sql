@@ -28,7 +28,7 @@ BEGIN
 	   	onluk := substring(num_str, num_len-(i-1)*3 -1, 1);
 	   	yuzluk := substring(num_str, num_len-(i-1)*3 -2, 1);
 
-	    IF i > 1 THEN
+	    IF i > 1 AND (COALESCE(NULLIF(birlik, '')::int,0)+ COALESCE(NULLIF(onluk, '')::int,0)+ COALESCE(NULLIF(yuzluk, '')::int,0) > 0) THEN
 	    	sub_result := ' ' || thousands[i-1];
 	    END IF;
         IF birlik NOT IN ('0', '') THEN
